@@ -6,22 +6,33 @@ using System.Text;
 
 namespace HttpReports.Storage.Abstractions.Models
 { 
-    [Table(Name = "RequestInfo" )] 
+    [Table(Name = "RequestInfo" )]
 
-    [Index("idx_info_id", "Id", true)]
-    [Index("idx_info_service", "Service")] 
-    [Index("idx_info_instance", "Instance")]
+    //这个索引不需要了,下面的idx_info_id_route_statuscode_time已经包含了这个索引
+    //[Index("idx_info_id", "Id", true)]
+    [Index("idx_info_id_route_statuscode_time", "Id,Route,StatusCode,CreateTime")]
+
+    ////这个索引不需要了,下面的idx_info_instance_time已经包含了这个索引
+    //[Index("idx_info_instance", "Instance")]
+    [Index("idx_info_instance_time", "Instance,CreateTime")]
+
+    [Index("idx_info_route", "Route")]
     [Index("idx_info_milliseconds", "Milliseconds")]
     [Index("idx_info_statuscode", "StatusCode")] 
     [Index("idx_info_createtime", "CreateTime")]
-    [Index("idx_info_route", "Route")]
 
-    [Index("idx_info_service_instance", "Service,Instance")]
-    [Index("idx_info_instance_time", "Instance,CreateTime")]
-    [Index("idx_info_id_route_statuscode_time", "Id,Route,StatusCode,CreateTime")]
+    ////这个索引不需要了,下面的idx_info_instance_time已经包含了这个索引
+    //[Index("idx_info_service", "Service")]
+    //[Index("idx_info_service_instance", "Service,Instance")]
+    [Index("idx_info_service_instance_time", "Service,Instance,CreateTime")]
+ 
+
     [Index("idx_info_service_parentservice_time", "Service,ParentService,CreateTime")]
-    [Index("idx_info_service_instance_milliseconds_time", "Service,Instance,Milliseconds,CreateTime")]  
-    [Index("idx_info_service_instance_statuscode_time", "Service,Instance,StatusCode,CreateTime")]  
+
+
+
+
+
 
     public class DBRequestInfo
     { 
