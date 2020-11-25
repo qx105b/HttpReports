@@ -24,6 +24,7 @@ namespace HttpReports.Storage.Abstractions.Models
     ////这个索引不需要了,下面的idx_info_instance_time已经包含了这个索引
     //[Index("idx_info_service", "Service")]
     //[Index("idx_info_service_instance", "Service,Instance")]
+    //FreeSql无法实现sql server创建索引的时候可以使用包含列的功能
     [Index("idx_info_service_instance_time", "Service,Instance,CreateTime")]
  
 
